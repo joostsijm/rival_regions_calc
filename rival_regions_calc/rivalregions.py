@@ -11,9 +11,9 @@ class Item():
     name = None
 
     def __init__(self, name):
-        """Initialize Resource """
+        """Initialize Resource"""
         self.id = self.items.get(name, None)
-        if self.name is not None:
+        if self.id is not None:
             self.name = name
 
 
@@ -43,23 +43,59 @@ class WorkProduction():
     resource_max = 0
     department_bonus = 0
     nation_bonus = False
+    wage_percentage = 100
+    tax = 0
 
     # Calculated
     _withdrawn_points = 0
     _productivity = 0
-
-    def withdrawn_points(self):
-        """Check if withdrawn points are calculated"""
-        if self._withdrawn_points == 0:
-            self.calculate()
-        return self._withdrawn_points
+    _wage = 0
 
 
-    def productivity(self):
+    def __init__(self, item):
+        """Initialize WorkProduction"""
+        if not isinstance(item, Item):
+            raise TypeError
+        self.resource = item
+
+
+    def productivity(self, energy=10, gold=None):
         """Check if productivity is calculated"""
         if self._productivity == 0:
             self.calculate()
-        return self._productivity
+        if gold is not None:
+            if gold % 1 > 0:
+                raise Exception
+            energy = gold * 10
+        if energy % 10 > 0:
+            raise Exception
+        return round(energy / 10 * self._productivity)
+
+
+    def withdrawn_points(self, energy=10, gold=None):
+        """Check if withdrawn points are calculated"""
+        if self._withdrawn_points == 0:
+            self.calculate()
+        if gold is not None:
+            if gold % 1 > 0:
+                raise Exception
+            energy = gold * 10
+        if energy % 10 > 0:
+            raise Exception
+        return round(energy / 10 * self._withdrawn_points, 2)
+
+
+    def wage(self, energy, gold=None):
+        """Calculate wage"""
+        if self._wage == 0:
+            self.calculate()
+        if gold is not None:
+            if gold % 1 > 0:
+                raise Exception
+            energy = gold * 10
+        if energy % 10 > 0:
+            raise Exception
+        return round(energy / 10 * self._wage)
 
 
     def resource_koef(self):
@@ -75,10 +111,8 @@ class WorkProduction():
         return 0
 
 
-    def calculate(self, energy=10):
-        """Return productivity """
-        if energy%10 > 0:
-            raise Exception
+    def calculate(self):
+        """Calculate productivity"""
 
         self._productivity = 20 * \
                 pow(self.user_level, 0.8) * \
@@ -90,5 +124,7 @@ class WorkProduction():
             self._productivity = self._productivity * 1.2
 
         self._productivity = self._productivity * (1 + self.department_bonus / 100)
-        self._productivity = energy / 10 * self._productivity
+        self._wage = self._productivity
+        self._wage = self._wage - self._productivity / 100 * self.tax
+        self._wage = self._wage / 100 * self.wage_percentage
         self._withdrawn_points = self._productivity / 40000000

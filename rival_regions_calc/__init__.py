@@ -6,4 +6,4 @@ Unofficial calculator for Rival Regions. Easily calculate common known
 formulas from the game.
 """
 
-from .calc import RivalRegions
+from .rivalregions import RivalRegions
