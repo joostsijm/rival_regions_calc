@@ -71,7 +71,7 @@ class WorkProduction():
             energy = gold * 10
         if energy % 10 > 0:
             raise Exception
-        return round(energy / 10 * var)
+        return energy / 10 * var
 
 
     def productivity(self, energy=10, gold=None):
@@ -96,15 +96,7 @@ class WorkProduction():
 
     def factory_profit(self, energy=10, gold=None):
         """Calculate wage"""
-        if self._factory_profit == 0:
-            self.calculate()
-        if gold is not None:
-            if gold % 1 > 0:
-                raise Exception
-            energy = gold * 10
-        if energy % 10 > 0:
-            raise Exception
-        return round(energy / 10 * self._factory_profit)
+        return self.calc(self._factory_profit, energy, gold)
 
 
     def resource_koef(self):
