@@ -61,42 +61,49 @@ class WorkProduction():
         self.resource = item
 
 
-    def calc(self, var, energy=None, gold=None):
+    def print_settings(self):
+        """Print the settings"""
+        print(
+            "Resource:        %16s\n" % (self.resource.name) +
+            "user_level:      %16s\n" % (self.user_level) +
+            "work_exp:        %16s\n" % (self.work_exp) +
+            "factory_level:   %16s\n" % (self.factory_level) +
+            "resource_max:    %16s\n" % (self.resource_max) +
+            "dep_bonus:       %16s\n" % (self.department_bonus) +
+            "nation_bonus:    %16s\n" % (self.nation_bonus) +
+            "wage_percentage: %16s\n" % (self.wage_percentage) +
+            "state_tax:       %16s\n" % (self.state_tax)
+            )
+
+
+    def calc(self, var, energy=None):
         """Calculate value vased on energy and return"""
-        if var == 0:
-            self.calculate()
-        if gold is not None:
-            if gold % 1 > 0:
-                raise Exception
-            energy = gold * 10
-        if energy % 10 > 0:
-            raise Exception
-        return energy / 10 * var
+        return 10 / energy * var
 
 
-    def productivity(self, energy=10, gold=None):
+    def productivity(self, energy=10):
         """Return productivity"""
-        return self.calc(self._productivity, energy, gold)
+        return self.calc(self._productivity, energy)
 
 
-    def withdrawn_points(self, energy=10, gold=None):
+    def withdrawn_points(self, energy=10):
         """Return withdrawn points"""
-        return self.calc(self._withdrawn_points, energy, gold)
+        return self.calc(self._withdrawn_points, energy)
 
 
-    def wage(self, energy=10, gold=None):
+    def wage(self, energy=10):
         """Return wage"""
-        return self.calc(self._wage, energy, gold)
+        return self.calc(self._wage, energy)
 
 
-    def tax(self, energy=10, gold=None):
+    def tax(self, energy=10):
         """Return tax"""
-        return self.calc(self._tax, energy, gold)
+        return self.calc(self._tax, energy)
 
 
-    def factory_profit(self, energy=10, gold=None):
+    def factory_profit(self, energy=10):
         """Calculate wage"""
-        return self.calc(self._factory_profit, energy, gold)
+        return self.calc(self._factory_profit, energy)
 
 
     def resource_koef(self):
@@ -125,6 +132,15 @@ class WorkProduction():
             self._productivity = self._productivity * 1.2
 
         self._productivity = self._productivity * (1 + self.department_bonus / 100)
+
+        if self.resource.id == 6:
+            self._productivity = self._productivity * 4
+        elif self.resource.id == 15:
+            self._productivity = self._productivity / 1000
+        elif self.resource.id == 21:
+            self._productivity = self._productivity / 5
+        elif self.resource.id == 24:
+            self._productivity = self._productivity / 1000
 
         # Tax
         self._tax = self._productivity / 100 * self.state_tax

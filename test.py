@@ -5,24 +5,25 @@ Test file
 
 from rival_regions_calc import Item, WorkProduction
 
-gold = Item("gold")
+resource = Item("oil")
+wp = WorkProduction(resource)
 
-wp = WorkProduction(gold)
-
-wp.user_level = 83
-wp.work_exp = 120981
-wp.factory_level = 141
+wp.user_level = 67
+wp.work_exp = 87063
+wp.factory_level = 123
 wp.resource_max = 379
 wp.nation_bonus = True
-wp.department_bonus = 34
-wp.wage_percentage = 99
+wp.department_bonus = 19
+wp.wage_percentage = 100
 wp.state_tax = 20
 
 wp.calculate()
 
+wp.print_settings()
+energy=1.9
 print("----")
-print("Productivity :  %10d" % wp.productivity())
-print("State Tax    : -%10d" % wp.tax())
-print("Factory Prof : -%10d" % wp.factory_profit())
-print("Wage         :  %10d" % wp.wage())
-print("Withdrawn    :  %10.2f" % wp.withdrawn_points())
+print("Productivity :  {:17,.0f}".format(wp.productivity(energy)))
+print("State Tax    : -{:17,.0f}".format(wp.tax(energy)))
+print("Factory Prof : -{:17,.0f}".format(wp.factory_profit(energy)))
+print("Wage         :  {:17,.0f}".format(wp.wage(energy)))
+print("Withdrawn    :  {:17,.2f}".format(wp.withdrawn_points(energy)))
