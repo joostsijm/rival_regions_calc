@@ -3,7 +3,7 @@
 from rival_regions_calc import ConstructionCosts, Building
 
 
-BUILDING = Building("Hospital")
+BUILDING = Building("hospital")
 CC = ConstructionCosts(BUILDING, 1805)
 
 CC.calculate(50)

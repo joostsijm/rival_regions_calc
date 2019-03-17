@@ -187,15 +187,15 @@ class Building():
 
 
     buildings = {
-        "Hospital": 1,
-        "Military base": 2,
-        "School": 3,
-        "Missile system": 4,
-        "Sea port": 5,
-        "Power plant": 6,
-        "Spaceport": 7,
-        "Airport": 8,
-        "House fund": 9,
+        "hospital": 1,
+        "military base": 2,
+        "school": 3,
+        "missile system": 4,
+        "sea port": 5,
+        "power plant": 6,
+        "spaceport": 7,
+        "airport": 8,
+        "house fund": 9,
     }
 
 
