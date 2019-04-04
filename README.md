@@ -13,7 +13,8 @@ $ pip install rival-regions-calc
 
 ```
 
-## Simple Demo
+## Demo
+### Production
 
 ```python
 from rival_regions_calc import Item, WorkProduction
@@ -35,6 +36,22 @@ wp.calculate()
 print(wp.productivity())
 ```
 
+### Construction
+
+```python
+from rival_regions_calc import ConstructionCosts, Building
+
+BUILDING = Building("hospital")
+CC = ConstructionCosts(BUILDING, 1805)
+
+CC.calculate(50)
+
+print(CC.cash)
+print(CC.gold)
+print(CC.oil)
+print(CC.ore)
+```
+
 ## Documentation
 
 Other information about functions and exceptions can be found on the [wiki.](https://github.com/joostsijm/rival_regions_calc/wiki)
@@ -42,4 +59,4 @@ Other information about functions and exceptions can be found on the [wiki.](htt
 ## Development
 
 I'll add formulas if I think they are important. 
-If you'd like to see a more improvement you can open an issue or make pull request.
+If you'd like to see a more improvements you can open an issue or make pull request.
