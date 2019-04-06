@@ -51,35 +51,29 @@ class WorkProduction():
             )
 
 
-    @staticmethod
-    def calc(var, energy=None):
-        """Calculate value vased on energy and return"""
-        return 10 / energy * var
-
-
     def productivity(self, energy=10):
         """Return productivity"""
-        return self.calc(self._productivity, energy)
+        return self._productivity * energy / 100
 
 
     def withdrawn_points(self, energy=10):
         """Return withdrawn points"""
-        return self.calc(self._withdrawn_points, energy)
+        return self._withdrawn_points * energy / 100
 
 
     def wage(self, energy=10):
         """Return wage"""
-        return self.calc(self._wage, energy)
+        return self._wage * energy / 100
 
 
     def tax(self, energy=10):
         """Return tax"""
-        return self.calc(self._tax, energy)
+        return self._tax * energy / 100
 
 
     def factory_profit(self, energy=10):
         """Calculate wage"""
-        return self.calc(self._factory_profit, energy)
+        return self._factory_profit * energy / 100
 
 
     def resource_koef(self):
@@ -99,10 +93,10 @@ class WorkProduction():
         """Calculate productivity"""
 
         self._productivity = 20 * \
-                pow(self.user_level, 0.8) * \
-                pow(self.resource_koef() / 10, 0.8) * \
-                pow(self.factory_level, 0.8) * \
-                pow(self.work_exp / 10, 0.6)
+            pow(self.user_level, 0.8) * \
+            pow(self.resource_koef() / 10, 0.8) * \
+            pow(self.factory_level, 0.8) * \
+            pow(self.work_exp / 10, 0.6)
 
         if self.nation_bonus:
             self._productivity = self._productivity * 1.2

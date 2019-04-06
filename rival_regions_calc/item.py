@@ -8,7 +8,6 @@ class Item():
 
     def __init__(self, item):
         """Initialize Resource"""
-        print(item)
         if isinstance(item, str):
             self.item_id = self.items[item]
             self.name = item
