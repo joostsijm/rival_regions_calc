@@ -82,7 +82,7 @@ class WorkProduction():
             return self.resource_max * 0.65
         if self.resource.item_id == 6:
             return self.resource_max * 0.4
-        if self.resource.item_id == 11 or self.resource.item_id == 16:
+        if self.resource.item_id == 11 or self.resource.item_id == 15:
             return self.resource_max * 0.75
         if self.resource.item_id == 21 or self.resource.item_id == 24:
             return pow(self.resource_max * 2, 0.4)
