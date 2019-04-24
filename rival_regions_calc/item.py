@@ -36,3 +36,15 @@ class Item():
         21: "liquid oxygen",
         24: "helium",
     }
+
+    resource_max = {
+        2: 371,
+        5: 356,
+        6: 637,
+        11: 25,
+        15: 27,
+    }
+
+    def get_max(self):
+        """return max for resource"""
+        return self.resource_max[self.item_id]

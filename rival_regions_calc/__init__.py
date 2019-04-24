@@ -7,6 +7,8 @@ formulas from the game.
 """
 
 from .item import Item
+from .resource_coefficient import ResourceCoefficient
 from .work_production import WorkProduction
 from .building import Building
 from .construction_costs import ConstructionCosts
+from .deep_exploration import DeepExploration

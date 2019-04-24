@@ -1,6 +1,7 @@
 """WorkProduction"""
 
 from . import Item
+from . import ResourceCoefficient
 
 
 class WorkProduction():
@@ -94,7 +95,7 @@ class WorkProduction():
 
         self._productivity = 20 * \
             pow(self.user_level, 0.8) * \
-            pow(self.resource_koef() / 10, 0.8) * \
+            ResourceCoefficient(self.resource, self.resource_max).calculate() * \
             pow(self.factory_level, 0.8) * \
             pow(self.work_exp / 10, 0.6)
 
