@@ -67,6 +67,18 @@ print(DE.gold)
 print(DE.diamond)
 ```
 
+### Resource coefficient
+
+```python
+from rival_regions_calc import ResourceCoefficient, Item
+
+resource = Item("oil")
+RC = ResourceCoefficient(resource, 266)
+print(RC.calculate())
+RC = ResourceCoefficient(resource, 371)
+print(RC.calculate())
+```
+
 ## Documentation
 
 Other information about functions and exceptions can be found on the [wiki.](https://github.com/joostsijm/rival_regions_calc/wiki)
