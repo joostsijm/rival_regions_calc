@@ -1,5 +1,6 @@
 """Building"""
 
+
 class Building():
     """Represents an item in Rival Regions"""
 
@@ -13,7 +14,6 @@ class Building():
         self.building_id = self.buildings.get(name, None)
         if self.building_id is not None:
             self.name = name
-
 
     buildings = {
         "hospital": 1,

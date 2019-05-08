@@ -29,13 +29,11 @@ class WorkProduction():
     _tax = 0
     _factory_profit = 0
 
-
     def __init__(self, item):
         """Initialize WorkProduction"""
         if not isinstance(item, Item):
             raise TypeError
         self.resource = item
-
 
     def print_settings(self):
         """Print the settings"""
@@ -51,48 +49,39 @@ class WorkProduction():
             "state_tax:       %16s\n" % (self.state_tax)
             )
 
-
     def productivity(self, energy=10):
         """Return productivity"""
         return self._productivity * energy / 100
-
 
     def withdrawn_points(self, energy=10):
         """Return withdrawn points"""
         return self._withdrawn_points * energy / 100
 
-
     def wage(self, energy=10):
         """Return wage"""
         return self._wage * energy / 100
-
 
     def tax(self, energy=10):
         """Return tax"""
         return self._tax * energy / 100
 
-
     def factory_profit(self, energy=10):
         """Calculate wage"""
         return self._factory_profit * energy / 100
 
-
-    def resource_koef(self):
-        """Calculate coefficient for resource"""
-        if self.resource.item_id == 2 or self.resource.item_id == 5:
-            return self.resource_max * 0.65
+    def additional_koef(self):
+        """Calculcate the additional koef"""
         if self.resource.item_id == 6:
-            return self.resource_max * 0.4
-        if self.resource.item_id == 11 or self.resource.item_id == 15:
-            return self.resource_max * 0.75
-        if self.resource.item_id == 21 or self.resource.item_id == 24:
-            return pow(self.resource_max * 2, 0.4)
-        return 0
-
+            self._productivity = self._productivity * 4
+        elif self.resource.item_id == 15:
+            self._productivity = self._productivity / 1000
+        elif self.resource.item_id == 21:
+            self._productivity = self._productivity / 5
+        elif self.resource.item_id == 24:
+            self._productivity = self._productivity / 1000
 
     def calculate(self):
         """Calculate productivity"""
-
         self._productivity = 20 * \
             pow(self.user_level, 0.8) * \
             ResourceCoefficient(self.resource, self.resource_max).calculate() * \
@@ -102,16 +91,8 @@ class WorkProduction():
         if self.nation_bonus:
             self._productivity = self._productivity * 1.2
 
-        self._productivity = self._productivity * (1 + self.department_bonus / 100)
-
-        if self.resource.item_id == 6:
-            self._productivity = self._productivity * 4
-        elif self.resource.item_id == 15:
-            self._productivity = self._productivity / 1000
-        elif self.resource.item_id == 21:
-            self._productivity = self._productivity / 5
-        elif self.resource.item_id == 24:
-            self._productivity = self._productivity / 1000
+        self._productivity = \
+            self._productivity * (1 + self.department_bonus / 100)
 
         # Tax
         self._tax = self._productivity / 100 * self.state_tax

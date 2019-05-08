@@ -18,21 +18,18 @@ class ConstructionCosts():
 
     def __init__(self, building, current):
         """Initialize WorkProduction"""
-        if not isinstance(building, Building):
-            raise TypeError
-        if not isinstance(current, int):
+        if not isinstance(building, Building) or not isinstance(current, int):
             raise TypeError
         self.building = building
         self.current = current
-
 
     def calculate(self, build_plus):
         """Calculate resources you need based on new buildings"""
         if not isinstance(build_plus, int):
             raise TypeError
         build_total = self.current + build_plus
-        building_id = self.building.building_id  
-        if self.building.building_id in (1, 2, 3):
+        building_id = self.building.building_id
+        if building_id in (1, 2, 3):
             for i in range(self.current + 1, build_total + 1):
                 self.cash += round(pow(i * 300, 1.5))
                 self.oil += round(pow(i * 160, 1.5))
@@ -40,7 +37,7 @@ class ConstructionCosts():
                 self.gold += round(pow(i * 2160, 1.5))
                 self.diamond += round(pow(i * 0, 1.5))
                 self.uranium += round(pow(i * 0, 1))
-        elif self.building.building_id in (4, 5, 8):
+        elif building_id in (4, 5, 8):
             for i in range(self.current + 1, build_total + 1):
                 self.cash += round(pow(i * 1000, 1.5))
                 self.oil += round(pow(i * 10, 1.5))

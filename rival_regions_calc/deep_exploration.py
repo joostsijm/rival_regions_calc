@@ -1,7 +1,8 @@
 """DeepExploration"""
 
-from . import Item
 import math
+from . import Item
+
 
 class DeepExploration():
     """Calculate deep exploration, costs and improved production"""
@@ -22,11 +23,11 @@ class DeepExploration():
     }
 
     resource_max = {
-        2: 371, # oil
-        5: 356, # ore
-        6: 637, # gold
-        11: 25, # uranium
-        15: 27, # diamond
+        2: 371,
+        5: 356,
+        6: 637,
+        11: 25,
+        15: 27,
     }
 
     def __init__(self, resource, base):
@@ -38,8 +39,13 @@ class DeepExploration():
 
     def calculate(self, deep_exploration):
         """Calculate exploration costs"""
+        if not isinstance(deep_exploration, int):
+            raise TypeError
         for i in range(1, deep_exploration + 1):
-            tmp = math.ceil(self.resource_types[self.resource.item_id] * (self.base + i) * 50000)
+            tmp = math.ceil(
+                self.resource_types[self.resource.item_id] *
+                (self.base + i) * 50000
+            )
 
             self.cash = self.cash + math.ceil(tmp * 0.95)
             self.gold = self.gold + math.ceil(tmp * 2)

@@ -1,5 +1,6 @@
 """Item"""
 
+
 class Item():
     """Represents an item in Rival Regions"""
 

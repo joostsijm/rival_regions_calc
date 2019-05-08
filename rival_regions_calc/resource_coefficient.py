@@ -2,6 +2,7 @@
 
 from . import Item
 
+
 class ResourceCoefficient():
     """Calculate resource coefficient in working formula"""
 
@@ -13,7 +14,7 @@ class ResourceCoefficient():
         return pow(self.limit * self.resource_koef() / 10, 0.8)
 
     def __init__(self, resource, limit):
-        """Initialize WorkProduction"""
+        """Initialize ResourceCoefficient"""
         if not isinstance(resource, Item) or not isinstance(limit, int):
             raise TypeError
         self.resource = resource
