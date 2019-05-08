@@ -52,6 +52,21 @@ print(CC.oil)
 print(CC.ore)
 ```
 
+### Deep exploration
+
+```python
+from rival_regions_calc import Item, DeepExploration
+
+resource = Item("oil")
+DE = DeepExploration(resource, 223)
+
+DE.calculate_max()
+
+print(DE.cash)
+print(DE.gold)
+print(DE.diamond)
+```
+
 ## Documentation
 
 Other information about functions and exceptions can be found on the [wiki.](https://github.com/joostsijm/rival_regions_calc/wiki)
