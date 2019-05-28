@@ -6,7 +6,6 @@ Unofficial calculator for Rival Regions. Easily calculate common known formulas 
 * Work productivity
 
 ## Install
-(Not on pypi.org yet)
 
 ```bash
 $ pip install rival-regions-calc
@@ -78,10 +77,6 @@ print(RC.calculate())
 RC = ResourceCoefficient(resource, 371)
 print(RC.calculate())
 ```
-
-## Documentation
-
-Other information about functions and exceptions can be found on the [wiki.](https://github.com/joostsijm/rival_regions_calc/wiki)
 
 ## Development
 
