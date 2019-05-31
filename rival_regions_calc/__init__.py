@@ -5,6 +5,7 @@ formulas from the game.
 """
 
 from .item import Item
+from .value import Value 
 from .resource_coefficient import ResourceCoefficient
 from .work_production import WorkProduction
 from .building import Building
