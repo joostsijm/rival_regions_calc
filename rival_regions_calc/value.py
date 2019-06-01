@@ -25,3 +25,6 @@ class Value(int):
         new_str = new_str.replace('kkkk', 't')
         new_str = new_str.replace(',', '.')
         return new_str
+
+    def __str__(self):
+        return self.__repr__()
