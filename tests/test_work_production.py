@@ -5,25 +5,25 @@ Test file
 
 from rival_regions_calc import Item, WorkProduction
 
-resource = Item("oil")
-wp = WorkProduction(resource)
+RESOURCE = Item("oil")
+WP = WorkProduction(RESOURCE)
 
-wp.user_level = 67
-wp.work_exp = 87063
-wp.factory_level = 123
-wp.resource_max = 379
-wp.nation_bonus = True
-wp.department_bonus = 19
-wp.wage_percentage = 100
-wp.state_tax = 20
+WP.user_level = 86
+WP.work_exp = 142000
+WP.factory_level = 185
+WP.resource_max = 371
+WP.nation_bonus = True
+WP.department_bonus = 1.9
+WP.wage_percentage = 100
+WP.state_tax = 2
 
-wp.calculate()
+WP.calculate()
 
-wp.print_settings()
-energy=1.9
+WP.print_settings()
+ENERGY = 10
 print("----")
-print("Productivity :  {:17,.0f}".format(wp.productivity(energy)))
-print("State Tax    : -{:17,.0f}".format(wp.tax(energy)))
-print("Factory Prof : -{:17,.0f}".format(wp.factory_profit(energy)))
-print("Wage         :  {:17,.0f}".format(wp.wage(energy)))
-print("Withdrawn    :  {:17,.2f}".format(wp.withdrawn_points(energy)))
+print("Productivity :  {:17,.0f}".format(WP.productivity(ENERGY)))
+print("State Tax    : -{:17,.0f}".format(WP.tax(ENERGY)))
+print("Factory Prof : -{:17,.0f}".format(WP.factory_profit(ENERGY)))
+print("Wage         :  {:17,.0f}".format(WP.wage(ENERGY)))
+print("Withdrawn    :  {:17,.2f}".format(WP.withdrawn_points(ENERGY)))
