@@ -30,11 +30,12 @@ class WorkProduction():
     _tax = 0
     _factory_profit = 0
 
-    def __init__(self, item):
+    def __init__(self, item=None):
         """Initialize WorkProduction"""
-        if not isinstance(item, Item):
+        if isinstance(item, Item) or item is None:
+            self.resource = item
+        else:
             raise TypeError
-        self.resource = item
 
     def print_settings(self):
         """Print the settings"""
