@@ -20,7 +20,8 @@ class WorkProduction():
     department_bonus = 0
     nation_bonus = False
     wage_percentage = 100
-    state_tax = 0
+    tax_rate = 0
+    profit_share = 0
 
     # Calculated
     _withdrawn_points = 0
@@ -46,7 +47,7 @@ class WorkProduction():
             "dep_bonus:       %16s\n" % (self.department_bonus) +
             "nation_bonus:    %16s\n" % (self.nation_bonus) +
             "wage_percentage: %16s\n" % (self.wage_percentage) +
-            "state_tax:       %16s\n" % (self.state_tax)
+            "tax_rate:        %16s\n" % (self.tax_rate)
             )
 
     def productivity(self, energy=10):
@@ -64,6 +65,14 @@ class WorkProduction():
     def tax(self, energy=10):
         """Return tax"""
         return self._tax * energy / 10
+
+    def state_tax(self, energy=10):
+        """Return state tax"""
+        return self._tax / 100 * (100 - self.profit_share) * energy / 10
+
+    def autonomy_tax(self, energy=10):
+        """Return state tax"""
+        return self._tax / 100 * self.profit_share * energy / 10
 
     def factory_profit(self, energy=10):
         """Calculate wage"""
@@ -100,7 +109,7 @@ class WorkProduction():
         self.additional_koef()
 
         # Tax
-        self._tax = self._productivity / 100 * self.state_tax
+        self._tax = self._productivity / 100 * self.tax_rate
         self._wage = self._productivity - self._tax
 
         # Factory profit
