@@ -107,6 +107,10 @@ class WorkProduction():
         self._productivity = \
             self._productivity * (1 + self.department_bonus / 100)
 
+        # Withdrawn
+        self._withdrawn_points = self._productivity / 40000000
+
+        # Extra coefficient
         self.additional_koef()
 
         # Tax
@@ -116,6 +120,3 @@ class WorkProduction():
         # Factory profit
         self._factory_profit = self._wage / 100 * (100 - self.wage_percentage)
         self._wage = self._wage - self._factory_profit
-
-        # Withdrawn
-        self._withdrawn_points = self._productivity / 40000000
