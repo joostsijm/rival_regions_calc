@@ -18,21 +18,22 @@ $ pip install rival-regions-calc
 ```python
 from rival_regions_calc import Item, WorkProduction
 
-gold = Item("gold")
-wp = WorkProduction(gold)
+RESOURCE = Item("oil")
+WP = WorkProduction(RESOURCE)
 
-wp.user_level = 80
-wp.work_exp = 120981
-wp.factory_level = 140
-wp.resource_max = 359
-wp.nation_bonus = True
-wp.department_bonus = 28
-wp.wage_percentage = 99
-wp.state_tax = 15
+WP.user_level = 86
+WP.work_exp = 142000
+WP.factory_level = 185
+WP.resource_max = 371
+WP.nation_bonus = True
+WP.department_bonus = 1.9
+WP.wage_percentage = 100
+WP.tax_rate = 2
+WP.profit_share = 75
 
-wp.calculate()
+WP.calculate()
 
-print(wp.productivity())
+print(WP.wage())
 ```
 
 ### Construction
