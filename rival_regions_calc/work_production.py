@@ -18,7 +18,6 @@ class WorkProduction():
     factory_level = 0
     resource_max = 0
     department_bonus = 0
-    nation_bonus = False
     wage_percentage = 100
     tax_rate = 0
     profit_share = 0
@@ -46,7 +45,6 @@ class WorkProduction():
             "factory_level:   %16s\n" % (self.factory_level) +
             "resource_max:    %16s\n" % (self.resource_max) +
             "dep_bonus:       %16s\n" % (self.department_bonus) +
-            "nation_bonus:    %16s\n" % (self.nation_bonus) +
             "wage_percentage: %16s\n" % (self.wage_percentage) +
             "tax_rate:        %16s\n" % (self.tax_rate)
             )
@@ -79,17 +77,6 @@ class WorkProduction():
         """Calculate wage"""
         return self._factory_profit * energy / 10
 
-    def additional_koef(self):
-        """Calculcate the additional koef"""
-        if self.resource.item_id == 6:
-            self._productivity = self._productivity * 4
-        elif self.resource.item_id == 15:
-            self._productivity = self._productivity / 1000
-        elif self.resource.item_id == 21:
-            self._productivity = self._productivity / 5
-        elif self.resource.item_id == 24:
-            self._productivity = self._productivity / 1000
-
     def calculate(self):
         """Calculate productivity"""
         self._productivity = 0.2 * \
@@ -101,17 +88,23 @@ class WorkProduction():
             pow(self.factory_level, 0.8) * \
             pow(self.work_exp / 10, 0.6)
 
-        if self.nation_bonus:
-            self._productivity = self._productivity * 1.2
+        # Add the depricated nation bonus
+        self._productivity *= 1.2
 
-        self._productivity = \
-            self._productivity * (1 + self.department_bonus / 100)
+        self._productivity *= (1 + self.department_bonus / 100)
 
         # Withdrawn
         self._withdrawn_points = self._productivity / 40000000
 
-        # Extra coefficient
-        self.additional_koef()
+        # Calculate aditional resource coefficient
+        if self.resource.item_id == 6:
+            self._productivity = self._productivity * 4
+        elif self.resource.item_id == 15:
+            self._productivity = self._productivity / 1000
+        elif self.resource.item_id == 21:
+            self._productivity = self._productivity / 5
+        elif self.resource.item_id == 24:
+            self._productivity = self._productivity / 1000
 
         # Tax
         self._tax = self._productivity / 100 * self.tax_rate

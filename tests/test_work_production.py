@@ -12,7 +12,6 @@ WP.user_level = 86
 WP.work_exp = 142000
 WP.factory_level = 185
 WP.resource_max = 371
-WP.nation_bonus = True
 WP.department_bonus = 1.9
 WP.wage_percentage = 100
 WP.tax_rate = 2
