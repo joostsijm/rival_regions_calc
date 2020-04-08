@@ -24,5 +24,6 @@ class Building():
         "power plant": 6,
         "spaceport": 7,
         "airport": 8,
+        "refill station": 8,
         "house fund": 9,
     }
