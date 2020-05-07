@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="rival_regions_calc",
-    version="1.1.0",
+    version="1.1.1",
     author="Joost Sijm",
     author_email="joostsijm@gmail.com",
     description="Rival Regions calculations",
