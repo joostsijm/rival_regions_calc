@@ -9,6 +9,8 @@ class Value(int):
             value = value.replace('t', '000000000000')
             value = value.replace('k', '000')
             value = value.replace('.', '')
+            if ',' in value:
+                value = value[:-len(value.split(',')[0])].replace(',', '')
             value = int(value)
         return super(Value, cls).__new__(cls, value)
 
