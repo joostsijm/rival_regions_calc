@@ -1,3 +1,5 @@
+"""Setup file"""
+
 import setuptools
 
 with open("README.md", "r") as fh:
@@ -5,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="rival_regions_calc",
-    version="1.1.1",
+    version="1.1.2",
     author="Joost Sijm",
     author_email="joostsijm@gmail.com",
     description="Rival Regions calculations",
